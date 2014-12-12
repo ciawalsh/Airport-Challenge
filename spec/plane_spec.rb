@@ -1,8 +1,11 @@
 require './lib/plane'
+require './lib/airport'
+require './lib/traffic_control'
 
 describe Plane do
 
   let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
 
   it 'has a flying status when created' do
     expect(plane.flying?).to eq(true)

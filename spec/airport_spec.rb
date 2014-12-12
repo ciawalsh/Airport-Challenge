@@ -48,7 +48,10 @@ describe Airport do
     context 'weather conditions' do
 
       it 'a plane cannot take off when there is a storm brewing' do
-
+        airport.land(plane)
+        airport.weather == 95
+        airport.take_off_if_sunny(plane)
+        expect(airport.plane_count).to eq(1)
       end
 
       it 'a plane cannot land in the middle of a storm' do
