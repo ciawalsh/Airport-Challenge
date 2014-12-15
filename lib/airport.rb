@@ -11,30 +11,20 @@ class Airport
 	end
 
 	def take_off_if_sunny(plane)
-		if weather == "Sunny"
-			take_off(plane)
-		else
-			"Weather is too bad to take off."
-		end
+		weather == "Sunny" ? take_off(plane) : "Weather is too bad to take off."
 	end
 
 	def land_if_sunny(plane)
-		if weather == "Sunny"
-			if !full? 
-				land(plane)
-			else
-				full
-			end
-		else
-			"Weather is too bad to land."
-		end
+		weather == "Sunny" ? land? : "Weather is too bad to land."
+	end
+
+	def land?
+		full? ? full : land(plane)
 	end
 
 	def full
-		if full? 
-			until empty? 
-				planes.each { |plane| take_off_if_sunny(plane) }
-			end
+		until empty? 
+			planes.each { |plane| take_off_if_sunny(plane) }
 		end
 	end
 

@@ -1,11 +1,7 @@
 module Weather
 
 	def weather
-		if rand_num < 90
-			"Sunny"
-		else
-			"Stormy"
-		end
+		rand_num < 90 ? "Sunny" : "Stormy"
 	end
 
 	def rand_num

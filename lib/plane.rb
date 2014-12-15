@@ -21,11 +21,7 @@ class Plane
 	end
 
 	def in_air?
-		if @flying == true
-			"Flying"
-		else 
-			"Landed"
-		end
+		@flying == true ? "Flying" : "Landed"
 	end
 
 end
