@@ -1,53 +1,37 @@
 Airport Challenge
 ========================
 
-This 
+- This is a small piece of software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+
+- Every plane has a status indicating whether it's flying or landed.
+
+- This software was developed using TDD.
 
 
-
-
-###Class - Bike
+###Class - Airport
 
 Responsibilites             | Collaborators
 ----------------------------|------------------
-Be rented                   | User, Station
-Be returned                 | User, Station, Van
-Be broken                   | User
-Be fixed                    | Garage
-Be held                     | Garage, Van, User, Station
-Be moved                    | Van, User
+Allow Planes to Take off    | Plane, Weather, Traffic Control
+Allow Planes to Land        | Plane, Weather, Traffic Control
 
-### Class - User
+### Class - Plane 
 
-Responsibilites     | Collaborators
---------------------|------------------------
-Rent                |  Bike, Station
-Break               |  Bike
-Return              |  Bike, Station
-Move                |  Bike
-
-### Class - Station 
-
-Responisibilites        |Collaborators
+Responisibilites        | Collaborators
 ------------------------|------------------
-Hold                    | Bike
-Receive                 | Bike, User, Van
-Eject                   | Bike, User, Van
+Take Off                | Airport, Weather, Traffic Control
+Land                    | Airport, Weather, Traffic Control
 
-### Class - Van 
+### Module - Traffic Control 
 
-Responisibilites        |Collaborators
+Responisibilites        | Collaborators
 ------------------------|------------------
-Receive                 | Bike, Station, Garage
-Eject                   | Bike, Station, Garage
-Holding                 | Bike
-Move                    | Bike, Station, Garage
+Allow Planes to Land    | Plane, Weather, Airport
+Allow Planes to Take Off| Plane, Weather, Airport
 
-### Class - Garage 
+### Module - Weather 
 
-Responisibilites        |Collaborators
+Responisibilites        | Collaborators
 ------------------------|------------------
-Hold                    | Bike
-Fix                     | Bike
-Receive                 | Bike, Van
-Eject                   | Bike, Van
+Be Stormy               | Traffic Control, Airport
+Be Sunny                | Traffic Control, Airport
