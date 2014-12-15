@@ -1,6 +1,6 @@
 module TrafficControl
 
-	DEFAULT_CAPACITY = 100
+	DEFAULT_CAPACITY = 6
 
 	def planes
 		@planes ||= []

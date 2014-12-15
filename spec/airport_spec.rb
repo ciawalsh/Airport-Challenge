@@ -1,6 +1,7 @@
 require './lib/airport'
 require './lib/traffic_control'
 require './lib/plane'
+require './lib/weather'
 
 describe Airport do
 
@@ -23,12 +24,13 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.plane_count).to eq(0)
     end
+    
   end
 
   context 'traffic control' do
 
     it 'a plane cannot land if the airport is full' do
-      fill_airport(100, airport)
+      fill_airport(6, airport)
       expect(lambda { airport.land(plane) }).to raise_error(RuntimeError, 'Not able to land, airport full!')
     end
 
@@ -37,27 +39,24 @@ describe Airport do
       expect(lambda { airport.take_off(plane) }).to raise_error(RuntimeError, 'No planes to take off!')
     end
 
-    # Include a weather condition using a module.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy, the plane can not take off and must remain in the airport.
-    # 
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
     context 'weather conditions' do
 
       it 'a plane cannot take off when there is a storm brewing' do
         airport.land(plane)
-        airport.weather == 95
+        allow(airport).to receive(:weather).and_return(95)
         airport.take_off_if_sunny(plane)
         expect(airport.plane_count).to eq(1)
       end
 
       it 'a plane cannot land in the middle of a storm' do
-
+        allow(airport).to receive(:weather).and_return(95)
+        airport.land_if_sunny(plane)
+        expect(airport.plane_count).to eq(0)
       end
+
     end
+
   end
+
 end
 

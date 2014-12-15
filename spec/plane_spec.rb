@@ -30,15 +30,22 @@ describe Plane do
 
 end
 
-# grand final
-# Given 6 planes, each plane must land. When the airport is full, every plane must take off again.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have the right status "landed"
-# Once all the planes are in the air again, check that they have the status of flying!
-
 describe "The grand finale (last spec)" do
 
-  it 'all planes can land and all planes can take off' do
-
+  def fill_airport(number_of_times, airport)
+    number_of_times.times { airport.land(Plane.new) }
   end
+
+
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
+
+  it 'all planes can land and all planes can take off' do
+    fill_airport(6, airport)
+    expect(airport.check_status).to eq("Landed")
+    airport.full
+    expect(airport.plane_count).to eq(0)
+    expect(plane.in_air?).to eq("Flying")
+  end
+  
 end
